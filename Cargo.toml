@@ -1,0 +1,26 @@
+[package]
+name = "artico"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+argon2 = { version = "0.5.3", features = ["std"] }
+axum = { version = "0.8.1", features = ["json", "macros"] }
+axum-extra = { version = "0.10.0", features = ["cookie"] }
+bb8 = "0.9.0"
+bb8-postgres = "0.9.0"
+bb8-redis = "0.21.0"
+env_logger = "0.11.6"
+eyre = "0.6.12"
+jsonwebtoken = "9.3.1"
+log = "0.4.26"
+rand = "0.9.0"
+reqwest = { version = "0.12.14", features = ["json", "rustls-tls"] }
+serde = { version = "1.0.217", features = ["serde_derive"] }
+serde_json = "1.0.140"
+serde_urlencoded = "0.7.1"
+thiserror = "2.0.12"
+tokio = { version = "1.43.0", features = ["full"] }
+tokio-postgres = "0.7.12"
+toml = "0.8.20"
+tower-http = { version = "0.6.2", features = ["cors"] }

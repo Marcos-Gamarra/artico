@@ -1,0 +1,25 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: artico-db
+    environment:
+      POSTGRES_USER: artico
+      POSTGRES_PASSWORD: artico
+      POSTGRES_DB: artico
+    ports:
+      - "6432:5432"
+    volumes:
+      - ./db:/docker-entrypoint-initdb.d 
+      - artico_data:/var/lib/postgresql/data
+
+  valkey:
+    image: valkey/valkey:8.0-alpine
+    container_name: artico-valkey
+    ports:
+      - "6379:6379"
+    volumes:
+      - session_data:/data
+
+volumes:
+  artico_data:
+  session_data:
