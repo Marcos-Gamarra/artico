@@ -11,9 +11,9 @@ pub struct DbPool {
 
 impl DbPool {
     pub async fn new() -> Self {
-        let db_config =
-            tokio_postgres::config::Config::from_str("postgresql://artico:artico@localhost:6432")
-                .expect("Could not connect to database");
+        let db_url = std::env::var("ARTICO_DB_URL").expect("ARTICO_DB_URL not set");
+        let db_config = tokio_postgres::config::Config::from_str(&db_url)
+            .expect("Could not connect to database");
         let db_manager =
             bb8_postgres::PostgresConnectionManager::new(db_config, tokio_postgres::NoTls);
 

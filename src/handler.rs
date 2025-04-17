@@ -172,7 +172,7 @@ pub async fn github_auth_callback(
         .await
     {
         warn!("Could not remove session from memory_store at github_auth_callback -> {e}",);
-        return Err(ArticoError::InternalServerError);
+        return Err(ArticoError::MemStoreError);
     }
 
     if let Err(e) = is_state_valid {

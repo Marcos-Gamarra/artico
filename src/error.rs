@@ -14,9 +14,6 @@ pub enum ArticoError {
     #[error("External service error.")]
     ExternalServiceError,
 
-    #[error("Unknown application error.")]
-    UnknownAppError,
-
     #[error("Generic application error.")]
     GenericAppError,
 
@@ -35,9 +32,6 @@ pub enum ArticoError {
 
     #[error("Forbidden request.")]
     Forbidden,
-
-    #[error("Unknown client error.")]
-    UnknownClientError,
 }
 
 impl IntoResponse for ArticoError {
@@ -52,7 +46,6 @@ impl IntoResponse for ArticoError {
                 (StatusCode::SERVICE_UNAVAILABLE, "External service error")
             }
             ArticoError::DbError => (StatusCode::INTERNAL_SERVER_ERROR, "Database error"),
-            ArticoError::UnknownAppError => (StatusCode::INTERNAL_SERVER_ERROR, "Unknown error"),
             ArticoError::GenericAppError => (StatusCode::INTERNAL_SERVER_ERROR, "Generic error"),
 
             // Client errors
@@ -60,9 +53,6 @@ impl IntoResponse for ArticoError {
             ArticoError::BadRequest => (StatusCode::BAD_REQUEST, "Bad request"),
             ArticoError::NotFound => (StatusCode::NOT_FOUND, "Not found"),
             ArticoError::Forbidden => (StatusCode::FORBIDDEN, "Forbidden"),
-            ArticoError::UnknownClientError => {
-                (StatusCode::INTERNAL_SERVER_ERROR, "Unknown client error")
-            }
         };
 
         (status, message).into_response()

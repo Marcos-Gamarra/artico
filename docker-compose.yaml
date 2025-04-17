@@ -1,4 +1,8 @@
 services:
+  # artico:
+  #   image: artico
+  #   ports:
+  #     - "3000:3000"
   postgres:
     image: postgres:latest
     container_name: artico-db
@@ -9,7 +13,6 @@ services:
     ports:
       - "6432:5432"
     volumes:
-      - ./db:/docker-entrypoint-initdb.d 
       - artico_data:/var/lib/postgresql/data
 
   valkey:

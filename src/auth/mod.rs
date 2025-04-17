@@ -34,12 +34,7 @@ impl AuthorizationCode {
 #[derive(Debug, Deserialize)]
 pub struct AccessToken {
     pub access_token: String,
-    expires_in: i64,
     pub id_token: Option<String>,
-    scope: String,
-    token_type: String,
-    refresh_token: Option<String>,
-    refresh_token_expires_in: Option<i64>,
 }
 
 #[derive(Deserialize)]

@@ -11,7 +11,6 @@ pub struct ApiRouter {
     pub db_pool: crate::db::DbPool,
     pub memory_store: crate::memory_store::MemoryStore,
     pub session_manager: SessionManager,
-    pub http_client: reqwest::Client,
     pub google_oauth_manager: crate::auth::google::GoogleOAuthManager,
     pub github_oauth_manager: crate::auth::github::GithubOAuthManager,
 }
@@ -32,7 +31,6 @@ impl ApiRouter {
             db_pool,
             memory_store,
             session_manager,
-            http_client,
             google_oauth_manager,
             github_oauth_manager,
         }

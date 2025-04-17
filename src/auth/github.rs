@@ -1,11 +1,8 @@
-//use jsonwebtoken::{decode_header, jwk::JwkSet, DecodingKey, Validation};
-//use log::warn;
 use crate::{
     auth::{self, AuthorizationCode},
     memory_store::MemoryStore,
 };
 use eyre::Result;
-use serde::Deserialize;
 
 use super::AccessToken;
 
@@ -16,7 +13,6 @@ pub struct GithubOAuthConfig {
     pub access_token_url: String,
     pub redirect_uri: String,
     pub auth_url: String,
-    // pub issuers: Vec<String>,
 }
 
 impl GithubOAuthConfig {
@@ -27,30 +23,8 @@ impl GithubOAuthConfig {
             access_token_url: std::env::var("GITHUB_ACCESS_TOKEN_URL")?,
             redirect_uri: std::env::var("GITHUB_REDIRECT_URI")?,
             auth_url: std::env::var("GITHUB_AUTH_URL")?,
-            // issuers: vec![std::env::var("GITHUB_ISSUER")?],
         })
     }
-}
-
-#[derive(Debug, Deserialize)]
-pub struct IdTokenClaims {
-    pub aud: String,                  // Audience (Client ID)
-    pub exp: u64,                     // Expiration time (Unix timestamp)
-    pub iat: u64,                     // Issued at (Unix timestamp)
-    pub iss: String,                  // Issuer (Google accounts)
-    pub sub: String,                  // Unique user ID
-    pub at_hash: Option<String>,      // Access token hash (if present)
-    pub azp: Option<String>,          // Authorized presenter (if present)
-    pub email: Option<String>,        // Email (if scope included)
-    pub email_verified: Option<bool>, // Email verification status
-    pub family_name: Option<String>,  // Last name
-    pub given_name: Option<String>,   // First name
-    pub hd: Option<String>,           // Google Workspace domain
-    pub locale: Option<String>,       // User's locale (e.g., "en-US")
-    pub name: Option<String>,         // Full name
-    pub nonce: Option<String>,        // Nonce for replay attack protection
-    pub picture: Option<String>,      // Profile picture URL
-    pub profile: Option<String>,      // Profile page URL
 }
 
 #[derive(Clone)]
